@@ -1,5 +1,5 @@
 /*
- * SequenceProvider.java
+ * SetLocaleController.java
  *
  * Project: TECHWATCH - TESTING TECHNOLOGIES
  *
@@ -14,12 +14,16 @@
  * agreement you entered into with ELCA.
  */
 
-package ch.elca.training.helper;
+package ch.elca.training.controller;
 
-import org.springframework.stereotype.Component;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
 /**
- * Centralized manages any sequences in the project.
+ * Controller to change the language. This one is separated from business controller.
  *
  * <script type="text/javascript">printFileStatus
  *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
@@ -31,16 +35,16 @@ import org.springframework.stereotype.Component;
  *
  * @author qkp
  */
-@Component
-public class SequenceProvider {
-    private long sequence = 1;
-    
+public class SetLocaleController extends AbstractController {
+
     /**
-     * Return the current sequence value and increase the value.
-     * 
-     * @return the next sequence.
+     * {@inheritDoc}
      */
-    public long getNext() {
-        return sequence++;
+    @Override
+    protected ModelAndView handleRequestInternal(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        request.getParameter("lang");
+        return null;
     }
+
 }

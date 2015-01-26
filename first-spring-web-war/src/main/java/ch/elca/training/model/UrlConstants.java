@@ -1,5 +1,5 @@
 /*
- * SequenceProvider.java
+ * UrlConstants.java
  *
  * Project: TECHWATCH - TESTING TECHNOLOGIES
  *
@@ -14,12 +14,10 @@
  * agreement you entered into with ELCA.
  */
 
-package ch.elca.training.helper;
-
-import org.springframework.stereotype.Component;
+package ch.elca.training.model;
 
 /**
- * Centralized manages any sequences in the project.
+ * All URLs will be defined as constants here.
  *
  * <script type="text/javascript">printFileStatus
  *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
@@ -31,16 +29,17 @@ import org.springframework.stereotype.Component;
  *
  * @author qkp
  */
-@Component
-public class SequenceProvider {
-    private long sequence = 1;
+public interface UrlConstants {
+	
+    /** Constant which is used to redirect page */
+    public static final String REDIRECT_PREFIX = "redirect:";
     
-    /**
-     * Return the current sequence value and increase the value.
-     * 
-     * @return the next sequence.
-     */
-    public long getNext() {
-        return sequence++;
-    }
+    /** The URL which is used to show home page. */
+    public static final String HOME_URL = "home";
+
+    /** The URL which is used to search the project list. */
+    public static final String SEARCH_PROJECTS_URL = "searchProjects";
+    
+    /** The URL which is used to show the project detail. */
+    public static final String EDIT_PROJECT_URL = "editProject";
 }
