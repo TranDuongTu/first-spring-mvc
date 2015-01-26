@@ -41,7 +41,7 @@ th {
 	//-->
 	</script>
 
-	<form:form method="POST" action="/searchProjects" commandName="query">
+	<form:form method="POST" action="${pageContext.request.contextPath}/spring-mvc/" commandName="query">
 		<table>
 			<tr>
 				<td><form:input path="matchingText" /></td>
