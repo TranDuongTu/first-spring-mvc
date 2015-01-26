@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Employee ========================================== -->
+    <bean id="qmv" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="qmv" />
+        <property name="rank" value="SENIOR_MANAGER"/>
+    </bean>
+
+    <bean id="htv" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="htv" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="tqp" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="tqp" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <bean id="hnh" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="hnh" />
+        <property name="rank" value="SENIOR_MANAGER"/>
+    </bean>
+
+    <bean id="nqn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="nqn" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <bean id="qkp" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="qkp" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="plh" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="plh" />
+        <property name="rank" value="SENIOR_MANAGER"/>
+    </bean>
+
+    <bean id="hnl" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="hnl" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <bean id="mkn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="mkn" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="tbh" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="tbh" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="tdn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="tdn" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <bean id="apl" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="apl" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="hpn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="hpn" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+    
+    <bean id="hun" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="hun" />
+        <property name="rank" value="SENIOR_MANAGER"/>
+    </bean>
+
+    <bean id="bnn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="bnn" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <bean id="phn" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="phn" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+    
+    <bean id="xhp" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="xhp" />
+        <property name="rank" value="MANAGER"/>
+    </bean>
+
+    <bean id="vvt" class="ch.elca.training.dom.Employee" parent="baseDom">
+        <property name="visa" value="vvt" />
+        <property name="rank" value="ENGINEER"/>
+    </bean>
+
+    <!-- Project ========================================== --> 
+    <bean id="project-efv" class="ch.elca.training.dom.Project" parent="baseDom">
+        <property name="name" value="EFV-Finanzstatistik-Platform" />
+        <property name="number" value="403" />
+        <property name="group" ref="group-qmv" />
+        <property name="leader" ref="htv" />
+        <property name="finishingDate" value="21/07/2008" />
+    </bean>
+
+    <bean id="project-cxnet" class="ch.elca.training.dom.Project" parent="baseDom">
+        <property name="name" value="ELCA Customer Extranet" />
+        <property name="number" value="650" />
+        <property name="group" ref="group-qmv" />
+        <property name="leader" ref="qkp" />
+        <property name="finishingDate" value="31/05/2008" />
+    </bean>
+
+    <bean id="project-crystal-ball" class="ch.elca.training.dom.Project" parent="baseDom">
+        <property name="name" value="Crystal Ball" />
+        <property name="number" value="397" />
+        <property name="group" ref="group-qmv" />
+        <property name="leader" ref="mkn" />
+        <property name="finishingDate" value="01/03/2008" />
+    </bean>
+
+    <bean id="project-ioc-client-extranet" class="ch.elca.training.dom.Project" parent="baseDom">
+        <property name="name" value="IOC Client Extranet" />
+        <property name="number" value="412" />
+        <property name="group" ref="group-hnh" />
+        <property name="leader" ref="apl" />
+        <property name="finishingDate" value="31/10/2008" />
+    </bean>
+
+    <bean id="project-ksta-migration" class="ch.elca.training.dom.Project" parent="baseDom">
+        <property name="name" value="KSTA Migration" />
+        <property name="number" value="363" />
+        <property name="group" ref="group-hnh" />
+        <property name="leader" ref="xhp" />
+        <property name="finishingDate" value="31/07/2008" />
+    </bean>
+
+    <!-- Group ========================================== -->
+    <bean id="group-qmv" class="ch.elca.training.dom.Group" parent="baseDom">
+        <property name="leader" ref="qmv" />
+        <property name="projects">
+            <list>
+                <ref bean="project-efv" />
+                <ref bean="project-cxnet" />
+                <ref bean="project-crystal-ball" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="group-hnh" class="ch.elca.training.dom.Group" parent="baseDom">
+        <property name="leader" ref="hnh" />
+        <property name="projects">
+            <list>
+                <ref bean="project-ioc-client-extranet" />
+                <ref bean="project-ksta-migration" />
+            </list>
+        </property>
+    </bean>
+
+</beans>
