@@ -22,19 +22,6 @@ import java.util.Map;
 import ch.elca.training.dao.GroupDao;
 import ch.elca.training.dom.Group;
 
-/**
- * Implementation of interface {@link GroupDao} in Hibernate.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public class ConfigurationGroupDaoImpl implements GroupDao {
     
     private Map<Long, Group> groups = new HashMap<Long, Group>();
@@ -43,11 +30,7 @@ public class ConfigurationGroupDaoImpl implements GroupDao {
 		return groups;
 	}
 
-	/**
-     * {@inheritDoc}
-     */
     public Group findById(long groupId) {
         return groups.get(groupId);
     }
-
 }

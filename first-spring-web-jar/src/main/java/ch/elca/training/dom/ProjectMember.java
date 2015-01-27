@@ -16,45 +16,23 @@
 
 package ch.elca.training.dom;
 
-/**
- * The role of each employee in project. Please note that one employee could have more than
- * 1 functionality for example, the project leader normally is a deveoper in the same project.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public class ProjectMember {
-    private Employee m_employee;
-    private FunctionEnum m_functionality;
-    /**
-     * @return the employee
-     */
-    public Employee getEmployee() {
-        return m_employee;
-    }
-    /**
-     * @param employee the employee to set
-     */
-    public void setEmployee(Employee employee) {
-        m_employee = employee;
-    }
-    /**
-     * @return the functionality
-     */
-    public FunctionEnum getFunctionality() {
-        return m_functionality;
-    }
-    /**
-     * @param functionality the functionality to set
-     */
-    public void setFunctionality(FunctionEnum functionality) {
-        m_functionality = functionality;
-    }
+	private Employee employee;
+	private FunctionEnum function;
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public FunctionEnum getFunctionality() {
+		return function;
+	}
+
+	public void setFunctionality(FunctionEnum functionality) {
+		function = functionality;
+	}
 }

@@ -12,5 +12,4 @@
 	<artifactId>first-spring-web-jar</artifactId>
 	<version>1.0.0</version>
 	<name>first-spring-web-jar</name>
-	<url>http://maven.apache.org</url>
 </project>

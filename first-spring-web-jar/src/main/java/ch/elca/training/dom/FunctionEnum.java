@@ -16,31 +16,8 @@
 
 package ch.elca.training.dom;
 
-/**
- * The role of each employee in a project.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public enum FunctionEnum {
-    /**
-     * Just code.
-     */
     DEVELOPER,
-    /**
-     * External member of the project whose responsible for the compliance of the project to
-     * the company standard process.
-     */
     QUALITY_AGENT,
-    /**
-     * Responsible for managing project from budget, quality to deadline.
-     */
     PROJECT_LEADER;
 }

@@ -41,7 +41,7 @@ th {
 	//-->
 	</script>
 
-	<form:form method="POST" action="${pageContext.request.contextPath}/spring-mvc/" commandName="query">
+	<form:form method="POST" action="${pageContext.request.contextPath}/search" commandName="query">
 		<table>
 			<tr>
 				<td><form:input path="matchingText" /></td>
@@ -65,7 +65,7 @@ th {
 		</tr>
 		<c:forEach items="${projects}" var="project">
 			<tr>
-				<td><a href="editProject?pid=${project.id}"><c:out
+				<td><a href="edit?pid=${project.id}"><c:out
 							value="${project.name}" /></a></td>
 				<td><c:out value="${project.leader.visa}" /></td>
 				<td><c:out value="${project.group.leader.visa}" /></td>

@@ -23,59 +23,18 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-/**
- * ELCA's Project.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public class Project extends BaseDom {
-	
 	private static final long serialVersionUID = 1L;
 	
-	private String m_name;
-    private int m_number;
-    private Group m_group;
-    private Date m_finishingDate;
-    private Employee m_leader;
+	private String name;
+    private int number;
+    private Group group;
+    private Date finishDate;
+    private Employee leader;
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "\nProject {\n\tID:" + getId() 
-            + "\n\tNUMBER: " + getNumber() 
-            + "\n\tNAME: " + getName() 
-            + "\n\tLEADER: " + getLeader() 
-            + "\n\tGROUP: " + getGroup() 
-            + "\n}";
-    }
-    
-    /**
-     * Copy 1 by 1 from the given project except the technical id. 
-     * 
-     * @param project {@link Project} to copy. This value must be not null and integrity.
-     */
-    public void copy(Project project) {
-        this.setGroup(project.getGroup());
-        this.setLeader(project.getLeader());
-        this.setName(project.getName());
-        this.setNumber(project.getNumber());
-        this.setFinishingDate(project.getFinishingDate());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -90,86 +49,61 @@ public class Project extends BaseDom {
         return false;
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
         return this.getNumber();
     }
     
-    /**
-     * @return the name
-     */
+    public void copy(Project project) {
+        this.setGroup(project.getGroup());
+        this.setLeader(project.getLeader());
+        this.setName(project.getName());
+        this.setNumber(project.getNumber());
+        this.setFinishingDate(project.getFinishingDate());
+    }
+    
     @NotBlank
     @Length(max = 50)
     public String getName() {
-        return m_name;
-    }
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        m_name = name;
-    }
-    
-    /**
-     * @return the number
-     */
-    @Range(min = 1)
-    public int getNumber() {
-        return m_number;
-    }
-    
-    /**
-     * @param number the number to set
-     */
-    public void setNumber(int number) {
-        m_number = number;
-    }
-    
-    /**
-     * @return the group
-     */
-    public Group getGroup() {
-        return m_group;
-    }
-    
-    /**
-     * @param group the group to set
-     */
-    public void setGroup(Group group) {
-        m_group = group;
-    }
-    
-    /**
-     * @return the finishingDate
-     */
-    @NotNull
-    public Date getFinishingDate() {
-        return m_finishingDate;
-    }
-    
-    /**
-     * @param finishingDate the finishingDate to set
-     */
-    public void setFinishingDate(Date finishingDate) {
-        m_finishingDate = finishingDate;
-    }
-    
-    /**
-     * @return the leader
-     */
-    @NotNull
-    public Employee getLeader() {
-        return m_leader;
-    }
-    
-    /**
-     * @param leader the leader to set
-     */
-    public void setLeader(Employee leader) {
-        m_leader = leader;
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    @Range(min = 1)
+    public int getNumber() {
+        return number;
+    }
+    
+    public void setNumber(int number) {
+        this.number = number;
+    }
+    
+    public Group getGroup() {
+        return group;
+    }
+    
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+    
+    @NotNull
+    public Date getFinishingDate() {
+        return finishDate;
+    }
+    
+    public void setFinishingDate(Date finishingDate) {
+        this.finishDate = finishingDate;
+    }
+    
+    @NotNull
+    public Employee getLeader() {
+        return leader;
+    }
+    
+    public void setLeader(Employee leader) {
+        this.leader = leader;
+    }
 }
