@@ -37,11 +37,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.elca.training.dom.Employee;
 import ch.elca.training.dom.EmployeeQuery;
+import ch.elca.training.dom.Group;
+import ch.elca.training.dom.GroupQuery;
 import ch.elca.training.dom.Project;
 import ch.elca.training.dom.ProjectQuery;
 import ch.elca.training.model.CustomBaseDomEditor;
 import ch.elca.training.model.UrlConstants;
-import ch.elca.training.service.GroupService;
 import ch.elca.training.service.ProjectService;
 
 @Controller
@@ -54,15 +55,15 @@ public class EditProjectController {
     @Autowired
     private ProjectService projectService;
     
-    @Autowired
-    private GroupService groupService;
-    
     private List<Employee> allEmployees;
+    private List<Group> allGroups;
     
     @InitBinder
     public void initBinderEmployees(WebDataBinder binder) {
     	binder.registerCustomEditor(Employee.class, 
     			new CustomBaseDomEditor<Employee>(getAllEmployees()));
+    	binder.registerCustomEditor(Group.class,
+    			new CustomBaseDomEditor<Group>(getAllGroups()));
     	
     	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
@@ -75,6 +76,13 @@ public class EditProjectController {
         }
         
         return allEmployees;
+    }
+    
+    public List<Group> getAllGroups() {
+    	if (allGroups == null) {
+    		allGroups = projectService.findGroupByQuery(new GroupQuery());
+    	}
+    	return allGroups;
     }
     
     @RequestMapping(method = RequestMethod.GET)
@@ -92,6 +100,7 @@ public class EditProjectController {
         
         model.addAttribute(COMMAND_OBJECT_NAME, project);
         model.addAttribute("allEmployees", getAllEmployees());
+        model.addAttribute("allGroups", getAllGroups());
         
         return UrlConstants.EDIT_VIEW;
     }
@@ -105,6 +114,7 @@ public class EditProjectController {
     		@ModelAttribute("query") ProjectQuery query) {
     	
     	model.addAttribute("allEmployees", getAllEmployees());
+    	model.addAttribute("allGroups", getAllGroups());
     	
     	if (bindingResult.hasErrors()) {
     		return UrlConstants.EDIT_VIEW;

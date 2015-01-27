@@ -81,6 +81,7 @@ public class Project extends BaseDom {
         this.number = number;
     }
     
+    @NotNull
     public Group getGroup() {
         return group;
     }

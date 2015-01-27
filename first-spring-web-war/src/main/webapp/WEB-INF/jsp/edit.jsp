@@ -2,7 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -60,6 +59,16 @@ input[type="text"] {
             <td><form:errors path="leader" cssClass="error" /></td>
         </tr>
         <tr>
+            <td><spring:message code="group" /></td>
+            <td><form:select path="group">
+                <option value="-1">Please select ...</option>
+                <c:forEach var="group" items="${allGroups}">
+                    <option value="${group.id}" <c:if test="${project.group.id == group.id}">selected="selected"</c:if>>${group.leader.visa}</option>
+                </c:forEach>
+            </form:select></td>
+            <td><form:errors path="group" cssClass="error" /></td>
+        </tr>
+        <tr>
             <td><spring:message code="finished_by" /></td>
             <td><form:input path="finishingDate" /></td>
             <td><form:errors path="finishingDate" cssClass="error" /></td>
@@ -67,12 +76,10 @@ input[type="text"] {
         <tr>
             <td><input type="submit" value="<spring:message code="save"/>" /></td>
             <td><script type="text/javascript">
-                <!--
                     function onCancel() {
                         var newURL = document.URL + "&_cancel";
                         document.location=newURL;
                     }
-                //-->
                 </script><input type="button" onclick="javascript:onCancel();" value="<spring:message code="cancel"/>" /></td>
         </tr>
     </table>
