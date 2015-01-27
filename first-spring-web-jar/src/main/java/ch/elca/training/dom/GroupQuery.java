@@ -16,19 +16,6 @@
 
 package ch.elca.training.dom;
 
-/**
- * Criteria for searching groups.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public class GroupQuery {
 
 }

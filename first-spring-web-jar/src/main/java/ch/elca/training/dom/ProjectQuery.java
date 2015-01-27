@@ -16,33 +16,14 @@
 
 package ch.elca.training.dom;
 
-/**
- * This class contains criteria for querying projects.
- *
- * <script type="text/javascript">printFileStatus
- *   ("$URL: https://cvs.elca.ch/subversion/cxnet-portal/trunk/etc/eclipse/preferences_2008_03_03.epf $",
- *    "$Revision: 334 $",
- *    "$Date: 2008-03-03 16:07:32 +0700 (Mon, 03 Mar 2008) $",
- *    "$Author: qkp@ELCA.CH $"
- *    "$Id:$"
- * );</script>
- *
- * @author qkp
- */
 public class ProjectQuery {
-    private String m_matchingText;
+    private String matchingText;
 
-    /**
-     * @return the matchingText
-     */
     public String getMatchingText() {
-        return m_matchingText;
+        return matchingText;
     }
 
-    /**
-     * @param matchingText the matchingText to set
-     */
     public void setMatchingText(String matchingText) {
-        m_matchingText = matchingText;
+        this.matchingText = matchingText;
     }
 }

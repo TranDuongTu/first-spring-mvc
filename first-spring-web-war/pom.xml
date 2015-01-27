@@ -8,9 +8,9 @@
 		<artifactId>first-spring-mvc-project</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>spring-first-web-war</artifactId>
+	<artifactId>first-srping-web-war</artifactId>
 	<packaging>war</packaging>
-	<name>spring-first-web-war Maven Webapp</name>
+	<name>first-spring-web-war</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>

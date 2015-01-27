@@ -26,25 +26,19 @@ import ch.elca.training.dao.GroupDao;
 import ch.elca.training.dao.impl.ConfigurationGroupDaoImpl;
 import ch.elca.training.dom.Group;
 
-/**
- * This class holds all Spring beans configuration for the application.
- * 
- * @author mmn
- *
- */
 @Configuration
 @ImportResource({ "classpath*:mandatory/core-config.xml",
-    "classpath*:scenarios/dummy/dummy-database.xml" })
+		"classpath*:scenarios/dummy/dummy-database.xml" })
 public class ApplicationConfiguration {
 
 	@Autowired
 	@Qualifier("group-qmv")
-	private Group qmvGroup;  // wire in the XML-configured bean
-	
+	private Group qmvGroup;
+
 	@Autowired
 	@Qualifier("group-hnh")
-	private Group hnhGroup;  // wire in the XML-configured bean
-	
+	private Group hnhGroup;
+
 	@Bean
 	public GroupDao configurationGroupDao() {
 		ConfigurationGroupDaoImpl groupDao = new ConfigurationGroupDaoImpl();
