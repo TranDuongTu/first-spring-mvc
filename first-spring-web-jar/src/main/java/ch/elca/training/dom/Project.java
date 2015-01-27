@@ -23,8 +23,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class Project extends BaseDom {
 	private static final long serialVersionUID = 1L;
@@ -55,7 +53,9 @@ public class Project extends BaseDom {
     }
     
     public void copy(Project project) {
-        this.setGroup(project.getGroup());
+    	if (project.getGroup() != null) {
+    		this.setGroup(project.getGroup());
+    	}
         this.setLeader(project.getLeader());
         this.setName(project.getName());
         this.setNumber(project.getNumber());

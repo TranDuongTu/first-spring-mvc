@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.WebRequest;
 
 import ch.elca.training.dom.Employee;
 import ch.elca.training.dom.EmployeeQuery;
 import ch.elca.training.dom.Project;
+import ch.elca.training.dom.ProjectQuery;
 import ch.elca.training.model.CustomBaseDomEditor;
 import ch.elca.training.model.UrlConstants;
+import ch.elca.training.service.GroupService;
 import ch.elca.training.service.ProjectService;
 
 @Controller
@@ -53,17 +54,17 @@ public class EditProjectController {
     @Autowired
     private ProjectService projectService;
     
+    @Autowired
+    private GroupService groupService;
+    
     private List<Employee> allEmployees;
     
     @InitBinder
     public void initBinderEmployees(WebDataBinder binder) {
     	binder.registerCustomEditor(Employee.class, 
     			new CustomBaseDomEditor<Employee>(getAllEmployees()));
-    }
-    
-    @InitBinder
-    protected void initBinderDate(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    	
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 dateFormat, false));
     }
@@ -99,8 +100,9 @@ public class EditProjectController {
     protected String onSubmit(
     		@ModelAttribute(COMMAND_OBJECT_NAME) @Valid Project command, 
     		BindingResult bindingResult, 
-    		SessionStatus status, Model model,
-    		WebRequest request, SessionStatus sessionStatus) {
+    		Model model,
+    		HttpServletRequest request,
+    		@ModelAttribute("query") ProjectQuery query) {
     	
     	model.addAttribute("allEmployees", getAllEmployees());
     	
@@ -108,9 +110,7 @@ public class EditProjectController {
     		return UrlConstants.EDIT_VIEW;
     	} else {
     		projectService.save(command);
-    		sessionStatus.setComplete();
-    		request.removeAttribute("projects", WebRequest.SCOPE_SESSION);
-    		request.removeAttribute("query", WebRequest.SCOPE_SESSION);
+    		model.addAttribute("projects", projectService.findByQuery(query));
     		
     		return UrlConstants.REDIRECT_PREFIX + UrlConstants.SEARCH_PROJECTS_URL;
     	}
