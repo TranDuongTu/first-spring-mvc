@@ -62,8 +62,8 @@ public class Project extends BaseDom {
         this.setFinishingDate(project.getFinishingDate());
     }
     
-    @NotBlank
-    @Length(max = 50)
+    @NotBlank(message = "A name is madatory")
+    @Length(max = 50, message = "Maximum length is 50 characters")
     public String getName() {
         return name;
     }
@@ -72,7 +72,7 @@ public class Project extends BaseDom {
         this.name = name;
     }
     
-    @Range(min = 1)
+    @Range(min = 1, message = "Min value is 1")
     public int getNumber() {
         return number;
     }
@@ -81,7 +81,7 @@ public class Project extends BaseDom {
         this.number = number;
     }
     
-    @NotNull
+    @NotNull(message = "Must set a group")
     public Group getGroup() {
         return group;
     }
@@ -90,7 +90,7 @@ public class Project extends BaseDom {
         this.group = group;
     }
     
-    @NotNull
+    @NotNull(message = "Must set a date")
     public Date getFinishingDate() {
         return finishDate;
     }
@@ -99,7 +99,7 @@ public class Project extends BaseDom {
         this.finishDate = finishingDate;
     }
     
-    @NotNull
+    @NotNull(message = "Must have a leader")
     public Employee getLeader() {
         return leader;
     }

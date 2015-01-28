@@ -16,9 +16,12 @@
 
 package ch.elca.training.dom;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ProjectQuery {
     private String matchingText;
 
+    @NotEmpty(message = "Criteria should not be empty!")
     public String getMatchingText() {
         return matchingText;
     }
