@@ -54,6 +54,7 @@ public class SearchProjectsController {
     protected String onSubmit(
     		@ModelAttribute(UrlConstants.COMMAND_OBJECT_QUERY) @Valid ProjectQuery query, 
     		BindingResult queryBindingResult, Model model) {
+    	
     	if (queryBindingResult.hasErrors()) {
     		return UrlConstants.SEARCH_VIEW;
     	}
