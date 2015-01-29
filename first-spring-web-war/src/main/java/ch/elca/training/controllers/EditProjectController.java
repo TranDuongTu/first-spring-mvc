@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.elca.training.constants.UrlConstants;
 import ch.elca.training.dom.Employee;
@@ -46,6 +48,7 @@ import ch.elca.training.service.ProjectService;
 
 @Controller
 @RequestMapping(UrlConstants.EDIT_PROJECT_URL)
+@SessionAttributes(value = {UrlConstants.SESSION_QUERY})
 public class EditProjectController {
     
     @Autowired
@@ -71,8 +74,13 @@ public class EditProjectController {
     @RequestMapping(method = RequestMethod.GET)
     protected String showEditProjectForm(
     		@RequestParam(value = UrlConstants.REQUEST_PARAM_CANCEL, required = false) String isCancel,
-    		@RequestParam(UrlConstants.REQUEST_PARAM_PID) long pid, Model model) {
+    		@RequestParam(UrlConstants.REQUEST_PARAM_PID) long pid, 
+    		final RedirectAttributes flashAttributes,
+    		@ModelAttribute(UrlConstants.SESSION_QUERY) ProjectQuery query,
+    		Model model) {
     	if (isCancel != null) {
+    		redirectProjects(query, flashAttributes);
+    		
     		return UrlConstants.REDIRECT_PREFIX + UrlConstants.SEARCH_PROJECTS_URL;
     	}
     	
@@ -81,12 +89,10 @@ public class EditProjectController {
             project = new Project();
         }
         
-        // Update projects in session
-        model.addAttribute(UrlConstants.MODEL_PROJECT, project);
-        
         // Model attributes for rendering this view
         model.addAttribute(UrlConstants.MODEL_EMPLOYEES, getAllEmployees());
         model.addAttribute(UrlConstants.MODEL_GROUPS, getAllGroups());
+        model.addAttribute(UrlConstants.MODEL_PROJECT, project);
         
         return UrlConstants.EDIT_VIEW;
     }
@@ -96,6 +102,7 @@ public class EditProjectController {
     		@ModelAttribute(UrlConstants.COMMAND_OBJECT_PROJECT) @Valid Project command,
     		BindingResult projectBindingResult, 
     		@ModelAttribute(UrlConstants.COMMAND_OBJECT_QUERY) ProjectQuery query,
+    		final RedirectAttributes flashAttributes,
     		Model model) {
     	
     	model.addAttribute(UrlConstants.MODEL_EMPLOYEES, getAllEmployees());
@@ -106,8 +113,7 @@ public class EditProjectController {
     	} else {       	
     		projectService.save(command);
     		
-    		// Update projects currently in Session
-    		model.addAttribute(UrlConstants.SESSION_PROJECTS, projectService.findByQuery(query));
+    		redirectProjects(query, flashAttributes);
     		
     		return UrlConstants.REDIRECT_PREFIX + UrlConstants.SEARCH_PROJECTS_URL;
     	}
@@ -130,5 +136,10 @@ public class EditProjectController {
     		allGroups = projectService.findGroupByQuery(new GroupQuery());
     	}
     	return allGroups;
+    }
+    
+    private void redirectProjects(ProjectQuery query, final RedirectAttributes flashAttributes) {
+		List<Project> projects = projectService.findByQuery(query);
+		flashAttributes.addFlashAttribute(UrlConstants.FLASH_PROJECTS, projects);
     }
 }

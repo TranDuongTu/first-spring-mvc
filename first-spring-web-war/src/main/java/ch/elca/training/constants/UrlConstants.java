@@ -33,7 +33,8 @@ public interface UrlConstants {
     public static final String COMMAND_OBJECT_PROJECT = "project";
     
     public static final String SESSION_QUERY = "query";
-    public static final String SESSION_PROJECTS = "projects";
+    
+    public static final String FLASH_PROJECTS = "projects";
     
     public static final String MODEL_PROJECT = "project";
     public static final String MODEL_EMPLOYEES = "allEmployees";
